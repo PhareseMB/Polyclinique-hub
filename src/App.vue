@@ -38,7 +38,12 @@ const services = [
   'CARDIOLOGIE', 'DERMATOLOGIE', 'ORL', 'NEUROLOGIE', 'ENDOCRINOLOGIE',
   'ORTHOPÉDIE & TRAUMATOLOGIE', 'MÉDECINE ESTHÉTIQUE', 'CHIRURGIE GÉNÉRALE & ESTHÉTIQUE',
   'URGENCE 24H/24', 'SERVICE LABORATOIRE',
-]
+].map((label, i) => ({ label, i }))
+
+// Répartition en deux colonnes indépendantes : évite qu'un libellé sur 2 lignes
+// (ex. "STOMATOLOGIE (DENTAIRE)") n'agrandisse la ligne de la colonne voisine.
+const leftServices = services.filter((_, idx) => idx % 2 === 0)
+const rightServices = services.filter((_, idx) => idx % 2 === 1)
 </script>
 
 <template>
@@ -93,14 +98,27 @@ const services = [
       <section class="services">
         <h2 class="section-title">Nos services</h2>
         <div class="services-grid">
-          <div
-            v-for="(svc, i) in services"
-            :key="svc"
-            class="service"
-            :style="{ animationDelay: `${i * 45}ms` }"
-          >
-            <span class="bullet"></span>
-            <span>{{ svc }}</span>
+          <div class="services-col">
+            <div
+              v-for="item in leftServices"
+              :key="item.label"
+              class="service"
+              :style="{ animationDelay: `${item.i * 45}ms` }"
+            >
+              <span class="bullet"></span>
+              <span>{{ item.label }}</span>
+            </div>
+          </div>
+          <div class="services-col">
+            <div
+              v-for="item in rightServices"
+              :key="item.label"
+              class="service"
+              :style="{ animationDelay: `${item.i * 45}ms` }"
+            >
+              <span class="bullet"></span>
+              <span>{{ item.label }}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -218,7 +236,8 @@ const services = [
   color: #23366C;
   text-transform: uppercase;
 }
-.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; }
+.services-grid { display: flex; gap: 18px; align-items: flex-start; }
+.services-col { display: flex; flex-direction: column; gap: 14px; flex: 1; min-width: 0; }
 .service {
   display: flex;
   align-items: flex-start;
