@@ -3,7 +3,7 @@ import QrcodeVue from 'qrcode.vue'
 
 // ⚠️ Remplacez par l'URL réelle une fois la page hébergée.
 // C'est cette adresse que le QR code encode.
-const hubUrl = 'https://polyclinique-hub-cb57-qa4xrf4kn-pharesembs-projects.vercel.app/'
+const hubUrl = 'https://polyclinique-hub.vercel.app/'
 
 // Réseaux sociaux
 const socials = [
