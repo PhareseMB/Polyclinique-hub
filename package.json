@@ -1,0 +1,20 @@
+{
+  "name": "polyclinique-hub",
+  "version": "1.0.0",
+  "description": "Page hub de liens — Polyclinique des Spécialistes (réseaux, contact, services + QR code)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "qrcode.vue": "^3.4.1",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^8.1.3"
+  }
+}
